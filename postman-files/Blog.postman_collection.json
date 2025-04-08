@@ -1,0 +1,176 @@
+{
+	"info": {
+		"_postman_id": "b86e6155-08a8-4e8f-b672-f02e032d2ddf",
+		"name": "Blog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11372601",
+		"_collection_link": "https://heraninda.postman.co/workspace/Heraninda~d2bf105e-12f7-4a12-8df8-ceef8a561f23/collection/11372601-b86e6155-08a8-4e8f-b672-f02e032d2ddf?action=share&source=collection_link&creator=11372601"
+	},
+	"item": [
+		{
+			"name": "list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{user_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/blogs",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"blogs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "store",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response = pm.response.json();",
+							"pm.environment.set(\"sample_blog_id\", response.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{user_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Test Blog\",\n    \"description\": \"Test Blog description\",\n    \"content\": \"Test Blog content\",\n    \"is_published\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/blogs",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"blogs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{user_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"test blog updated\",\n    \"description\": \"test blog desc updated\",\n    \"content\": \"test blog content updated\",\n    \"is_published\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/blogs/{{sample_blog_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"blogs",
+						"{{sample_blog_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{user_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/blogs/{{sample_blog_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"blogs",
+						"{{sample_blog_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
