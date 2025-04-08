@@ -22,7 +22,7 @@ class BlogUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:255',
+            'title' => 'nullable|string|max:255',
             'description' => 'nullable|string|max:255',
             'content' => 'nullable|string',
             'is_published' => 'nullable|boolean',

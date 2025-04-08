@@ -36,12 +36,18 @@ it('can_update_blog', function () {
     $blog = Blog::factory()->create();
     $response = $this->put('/api/blogs/' . $blog->id, [
         'title' => 'Updated Blog',
+        'description' => 'Updated Description',
+        'content' => 'Updated Content',
+        'is_published' => true,
     ], [
         'Accept' => 'application/json',
     ]);
     $response->assertStatus(200);
     $this->assertDatabaseHas('blogs', [
         'title' => 'Updated Blog',
+        'description' => 'Updated Description',
+        'content' => 'Updated Content',
+        'is_published' => true,
     ]);
 });
 
